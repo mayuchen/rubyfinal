@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Title:</b>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @blog.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
+
+<h2>Comments</h2>
+<div id="comments">
+<%= render :partial => @blog.comments %>
+</div>
+
+
+<%= form_for [@blog, Comment.new],:remote=>true do |f| %>
+ <p>
+  <%=f.label:content,"New Comment"%><br/>
+  <%=f.text_area:content,:rows=>5%>
+ </p>
+ <p><%=f.submit"Add Comment"%></p>
+<%end%>
